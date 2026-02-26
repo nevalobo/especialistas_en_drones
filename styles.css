@@ -70,13 +70,117 @@ nav {
 /* --- Secciones Globales --- */
 section { scroll-margin-top: 70px; } 
 
-/* --- Pilares de Valor --- */
+/* --- Mejora de los Pilares con Efecto Inmersivo --- */
 .pilares {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px; padding: 100px 10%; background: var(--bg-main);
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px; 
+    padding: 100px 10%; 
+    background: var(--bg-main);
 }
-.pilar-item h3 { font-size: 1.1rem; margin-bottom: 15px; border-left: 3px solid var(--accent-blue); padding-left: 15px; color: var(--text-main); }
-.pilar-item p { font-size: 0.9rem; color: var(--text-muted); }
+
+.pilar-item {
+    position: relative;
+    background: #090909;
+    border-radius: 28px; /* Bordes más curvos estilo moderno */
+    border: 1px solid var(--border);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 480px; /* Un poco más de aire para el video */
+    cursor: pointer;
+}
+
+/* El Video de Fondo */
+.pilar-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.4; /* Más oscuro en reposo */
+    transition: all 0.8s ease;
+    filter: grayscale(30%); /* Efecto cinemático */
+}
+
+/* Máscara de Degradado mejorada */
+.pilar-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top, 
+        rgba(0,0,0,0.95) 0%, 
+        rgba(0,0,0,0.4) 50%, 
+        transparent 100%
+    );
+    z-index: 1;
+    transition: opacity 0.6s ease;
+}
+
+/* Contenedor de Texto con Animación */
+.pilar-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    transform: translateY(15px); /* Inicia un poco más abajo */
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.pilar-icon {
+    color: var(--accent-blue);
+    margin-bottom: 15px;
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 0px var(--accent-blue));
+}
+
+.pilar-item h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: 12px; 
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.pilar-item p { 
+    font-size: 0.95rem; 
+    color: var(--text-muted);
+    line-height: 1.6;
+    opacity: 0.8;
+    transition: opacity 0.5s ease;
+}
+
+/* --- ESTADOS HOVER --- */
+
+.pilar-item:hover {
+    transform: translateY(-10px);
+    border-color: rgba(41, 151, 255, 0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.pilar-item:hover .pilar-video-bg {
+    opacity: 0.7;
+    transform: scale(1.1); /* Zoom suave */
+    filter: grayscale(0%); /* Recupera color */
+}
+
+.pilar-item:hover .pilar-content {
+    transform: translateY(0); /* Sube el texto */
+}
+
+.pilar-item:hover .pilar-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px var(--accent-blue)); /* El icono brilla */
+}
+
+.pilar-item:hover p {
+    opacity: 1;
+    color: #ffffff;
+}
+
 
 /* --- Workflow --- */
 .workflow { padding: 100px 10%; background: var(--bg-secondary); border-radius: 50px 50px 0 0; border-top: 1px solid var(--border); }
@@ -177,4 +281,13 @@ footer p {
     .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
     .whatsapp-float svg { width: 26px; height: 26px; }
     .nav-links .nav-cta { margin-top: 10px; margin-left: 0; }
+
+    .pilar-item {
+        height: 350px; /* Un poco más bajas en móvil */
+    }
+    .pilares {
+        padding: 60px 5%;
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+
 }
