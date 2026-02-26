@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultoría en Inteligencia Aérea | Soluciones Geoespaciales</title>
+    
+    <meta name="description" content="Expertos en captura masiva de datos y procesamiento geoespacial con drones para ingeniería, agricultura, minería y gestión de activos críticos en Costa Rica.">
+    <meta name="keywords" content="drones, topografía, fotogrametría, LiDAR, inspección industrial, Costa Rica, gemelos digitales, agricultura de precisión">
+    <meta name="author" content="Especialistas en Drones">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.especialistasendrones.com/">
+    <meta property="og:title" content="Inteligencia Aérea y Soluciones Geoespaciales">
+    <meta property="og:description" content="Datos que eliminan la incertidumbre. Captura masiva de datos con drones para proyectos de alta precisión.">
+    <meta property="og:image" content="https://www.especialistasendrones.com/media/preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.especialistasendrones.com/">
+    <meta name="twitter:title" content="Inteligencia Aérea y Soluciones Geoespaciales">
+    <meta name="twitter:description" content="Datos que eliminan la incertidumbre. Captura masiva de datos con drones para proyectos de alta precisión.">
+    <meta name="twitter:image" content="https://www.especialistasendrones.com/media/preview.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q9BWERW66V"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -41,7 +61,7 @@
 
     <section id="soluciones" class="pilares">
         <div class="pilar-item reveal delay-1">
-            <h3>Seguridad Operativa</h3>
+            <h3>Topografía</h3>
             <p>Reducimos la exposición al riesgo eliminando la necesidad de inspecciones manuales en altura o terrenos peligrosos.</p>
         </div>
         <div class="pilar-item reveal delay-2">
@@ -82,7 +102,7 @@
             <ul class="file-list">
                 <li>Nubes de puntos densificadas <span class="file-type">.LAS / .LAZ</span></li>
                 <li>Modelos Digitales de Terreno (MDT) <span class="file-type">.GeoTIFF</span></li>
-                <li>Ortomosaicos de alta resolución <span class="file-type">.KML / .TIFF</span></li>
+                <li>Ortomosaicos de alta resolución <span class="file-type">.ECW / .TIFF</span></li>
                 <li>Cálculos de Volumetría y Perfiles <span class="file-type">.CSV / .PDF</span></li>
             </ul>
         </div>
@@ -102,18 +122,37 @@
         <h2>Hablemos de su próximo proyecto</h2>
         <p>Diseñamos planes de captura a la medida de sus objetivos técnicos.</p>
         <div class="form-card reveal">
-            <form id="mi-formulario" action="https://docs.google.com/forms/d/e/1FAIpQLSc1fkZnsL0VzhB31-HVxOQAAjSQ77w4MZOVzPP4aoU7_rJwiQ/formResponse" method="POST" target="hidden_iframe">
-                <input type="text" name="entry.1824786687" placeholder="Nombre completo" required>
-                <input type="email" name="entry.1585212464" placeholder="Correo electrónico" required>
-                <textarea rows="4" name="entry.243184396" placeholder="¿Qué activo o terreno necesita digitalizar?" required></textarea>
-                <button type="submit" class="btn-submit">Enviar Solicitud Técnica</button>
+            <form id="mi-formulario">
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                
+                <label style="display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9rem;">Adjuntar plano, KML o imagen (Max 5MB)</label>
+                <input type="file" id="archivo" accept=".pdf,.kml,.kmz,.dwg,.jpg,.png" style="background: var(--bg-main); cursor: pointer; color: var(--text-muted); padding-top: 15px;">
+                
+                <textarea rows="4" id="mensaje" placeholder="¿Qué activo o terreno necesita digitalizar?" required></textarea>
+                <button type="submit" id="btn-submit" class="btn-submit">Enviar Solicitud Técnica</button>
             </form>
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Especialistas en drones. Servicios de Consultoría Técnica Aérea.
+        <div class="social-links">
+            <a href="https://instagram.com/tu_usuario" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://youtube.com/tu_canal" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2026 Especialistas en Drones. Servicios de Consultoría Técnica Aérea.</p>
+        
         <a href="https://wa.me/50683530842?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20drones." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="white">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>

@@ -116,8 +116,34 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); }
 }
 .btn-submit:hover { opacity: 0.8; }
 
-/* --- Footer --- */
-footer { padding: 50px; text-align: center; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); background: var(--bg-main); }
+/* --- Footer y Redes Sociales --- */
+footer { 
+    padding: 50px 20px; 
+    border-top: 1px solid var(--border); 
+    background: var(--bg-main); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 20px; 
+}
+footer p { 
+    color: var(--text-muted); 
+    font-size: 0.8rem; 
+    text-align: center;
+}
+.social-links { 
+    display: flex; 
+    gap: 25px; 
+}
+.social-links a { 
+    color: var(--text-muted); 
+    transition: color 0.3s ease, transform 0.3s ease; 
+    display: flex; 
+}
+.social-links a:hover { 
+    color: var(--text-main); /* Se iluminan en blanco al pasar el mouse */
+    transform: scale(1.15); /* Crecen un poquito */
+}
 
 /* --- Botón Flotante de WhatsApp --- */
 .whatsapp-float {
