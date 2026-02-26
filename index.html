@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoría en Inteligencia Aérea | Soluciones Geoespaciales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <nav>
+        <a href="#inicio" class="logo">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 12 12 22 22 12 12 2"></polygon>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            Especialistas en Drones
+        </a>
+        <div class="nav-links">
+            <a href="#soluciones">Soluciones</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#contacto" class="nav-cta">Contacto</a>
+        </div>
+    </nav>
+
+    <header id="inicio" class="hero">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="media/aerial-drone-flight.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Datos que eliminan la incertidumbre.</h1>
+            <p>Expertos en captura masiva de datos y procesamiento geoespacial para ingeniería, agricultura, minería y gestión de activos críticos.</p>
+        </div>
+    </header>
+
+    <section id="soluciones" class="pilares">
+        <div class="pilar-item reveal delay-1">
+            <h3>Seguridad Operativa</h3>
+            <p>Reducimos la exposición al riesgo eliminando la necesidad de inspecciones manuales en altura o terrenos peligrosos.</p>
+        </div>
+        <div class="pilar-item reveal delay-2">
+            <h3>Precisión Técnica</h3>
+            <p>Nuestra metodología combina GNSS de alta precisión con sensores de teledetección para resultados validados topográficamente.</p>
+        </div>
+        <div class="pilar-item reveal delay-3">
+            <h3>Eficiencia de Costos</h3>
+            <p>Digitalice grandes extensiones de terreno y activos en una sola jornada, optimizando tiempos de respuesta y planeación.</p>
+        </div>
+    </section>
+
+    <section id="workflow" class="workflow">
+        <div class="section-header reveal">
+            <h2>Del campo al escritorio</h2>
+            <p>Un flujo de trabajo diseñado para la integridad de los datos.</p>
+        </div>
+        <div class="step-grid">
+            <div class="step reveal delay-1">
+                <span class="step-num">01. CAPTURA</span>
+                <p>Planificación de vuelo autónomo optimizado para la densidad de datos requerida.</p>
+            </div>
+            <div class="step reveal delay-2">
+                <span class="step-num">02. PROCESAMIENTO</span>
+                <p>Computación de nubes de puntos y corrección cinemática para máxima fidelidad.</p>
+            </div>
+            <div class="step reveal delay-3">
+                <span class="step-num">03. ANÁLISIS</span>
+                <p>Interpretación de resultados y generación de reportes de ingeniería específicos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="entregables reveal">
+        <div>
+            <h2>Resultados Listos para Ingeniería</h2>
+            <p>No entregamos "fotos", entregamos activos digitales compatibles con su ecosistema de trabajo (CAD, BIM, GIS).</p>
+            <ul class="file-list">
+                <li>Nubes de puntos densificadas <span class="file-type">.LAS / .LAZ</span></li>
+                <li>Modelos Digitales de Terreno (MDT) <span class="file-type">.GeoTIFF</span></li>
+                <li>Ortomosaicos de alta resolución <span class="file-type">.KML / .TIFF</span></li>
+                <li>Cálculos de Volumetría y Perfiles <span class="file-type">.CSV / .PDF</span></li>
+            </ul>
+        </div>
+        <div class="mesh-container">
+            <iframe title="Topographic Drone Mapping" 
+                frameborder="0" 
+                allowfullscreen 
+                mozallowfullscreen="true" 
+                webkitallowfullscreen="true" 
+                allow="autoplay; fullscreen; xr-spatial-tracking" 
+                src="https://sketchfab.com/models/1a8837d2c77f4400a0893ae1c15e3057/embed?autostart=1&autospin=0.2&ui_theme=dark&ui_infos=0">
+            </iframe>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <h2>Hablemos de su próximo proyecto</h2>
+        <p>Diseñamos planes de captura a la medida de sus objetivos técnicos.</p>
+        <div class="form-card reveal">
+            <form id="mi-formulario" action="https://docs.google.com/forms/d/e/1FAIpQLSc1fkZnsL0VzhB31-HVxOQAAjSQ77w4MZOVzPP4aoU7_rJwiQ/formResponse" method="POST" target="hidden_iframe">
+                <input type="text" name="entry.1824786687" placeholder="Nombre completo" required>
+                <input type="email" name="entry.1585212464" placeholder="Correo electrónico" required>
+                <textarea rows="4" name="entry.243184396" placeholder="¿Qué activo o terreno necesita digitalizar?" required></textarea>
+                <button type="submit" class="btn-submit">Enviar Solicitud Técnica</button>
+            </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Especialistas en drones. Servicios de Consultoría Técnica Aérea.
+        <a href="https://wa.me/50683530842?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20drones." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+        </a>
+    </footer>
+
+</body>
+</html>
