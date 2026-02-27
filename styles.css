@@ -310,7 +310,7 @@ nav.nav-scrolled {
 }
 
 .mesh-container {
-    background: var(--bg-secondary); 
+    background: #000; /* Fondo negro mientras carga para evitar destellos blancos */
     border-radius: 30px; 
     display: flex; 
     align-items: center; 
