@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+    });
     
     // --- 1. CONFIGURACIÓN DE GOOGLE ANALYTICS ---
     // Al asignarlo a 'window', nos aseguramos de que 'gtag' sea global
@@ -145,3 +151,6 @@ document.addEventListener("DOMContentLoaded", function() {
         reader.onerror = error => reject(error);
     });
 });
+
+console.log("%c Especialistas en Drones ", "color: #2997ff; font-size: 20px; font-weight: bold; background: #000; padding: 5px; border-radius: 5px;");
+console.log("Ingeniería aérea de precisión lista. ¿Buscando el código fuente? Trabajamos con los mejores estándares.");

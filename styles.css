@@ -1,6 +1,19 @@
 /* ========================================= */
 /* PALETA DARK MODE & VARIABLES              */
 /* ========================================= */
+
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s;
+}
+.loader-logo { width: 50px; animation: pulse-blue 1.5s infinite ease-in-out; }
+
+@keyframes pulse-blue {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--accent-blue)); }
+    50% { transform: scale(1.2); filter: drop-shadow(0 0 20px var(--accent-blue)); }
+}
+
 :root {
     --bg-main: #000000;
     --bg-secondary: #111111;
@@ -377,7 +390,7 @@ footer p { color: var(--text-muted); font-size: 0.8rem; text-align: center; }
     /* UX Vital: Forzamos visible la info del Bento porque no hay Hover en móvil */
     .bento-hover-info { max-height: 300px; opacity: 1; }
     .bento-bg { filter: brightness(0.25); }
-    .bento-item h3 { transform: translateY(-5px); color: var(--accent); }
+    .bento-item h3 { transform: none; color: #ffffff; }
 }
 
 /* Móviles pequeños */
