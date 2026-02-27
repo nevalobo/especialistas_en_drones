@@ -7,101 +7,246 @@
     
     <meta name="description" content="Expertos en captura masiva de datos y procesamiento geoespacial con drones para ingeniería, agricultura, minería y gestión de activos críticos en Costa Rica.">
     <meta name="keywords" content="drones, topografía, fotogrametría, LiDAR, inspección industrial, Costa Rica, gemelos digitales, agricultura de precisión">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Especialistas en Drones",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "CR"
-      },
-      "serviceType": ["Topografía", "Fotogrametría", "LiDAR", "Escaneo 3D"],
-      "description": "Consultoría en Inteligencia Aérea y Soluciones Geoespaciales en Costa Rica.",
-      "url": "https://www.especialistasendrones.com/"
-    }
-    </script>
+    <meta name="author" content="Especialistas en Drones">
 
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.especialistasendrones.com/">
+    <meta property="og:title" content="Inteligencia Aérea y Soluciones Geoespaciales">
+    <meta property="og:description" content="Datos que eliminan la incertidumbre. Captura masiva de datos con drones para proyectos de alta precisión.">
+    <meta property="og:image" content="https://www.especialistasendrones.com/media/preview.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q9BWERW66V"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
     <script src="main.js" defer></script>
 </head>
 <body>
 
     <nav>
         <a href="#inicio" class="logo">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 12 12 22 22 12 12 2"></polygon><circle cx="12" cy="12" r="3"></circle></svg>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 12 12 22 22 12 12 2"></polygon>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
             Especialistas en Drones
         </a>
         <div class="nav-links">
             <a href="#servicios">Servicios</a>
             <a href="#workflow">Workflow</a>
+            <a href="#equipo">Nuestro equipo</a>
             <a href="#contacto" class="nav-cta">Contacto</a>
         </div>
     </nav>
 
-    <main>
-        <header id="inicio" class="hero">
-            <video autoplay loop muted playsinline poster="media/hero-preview.jpg" class="hero-video">
-                <source src="media/aerial-drone-flight.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>Datos que eliminan la incertidumbre.</h1>
-                <p>Expertos en captura masiva de datos y procesamiento geoespacial para ingeniería, agricultura, minería y gestión de activos críticos.</p>
-            </div>
-        </header>
+    <header id="inicio" class="hero">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="media/video/aerial-drone-flight.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Datos que eliminan la incertidumbre.</h1>
+            <p>Expertos en captura masiva de datos y procesamiento geoespacial para ingeniería, agricultura, minería y gestión de activos críticos.</p>
+        </div>
+    </header>
 
-        <section id="servicios" class="pilares">
-            <div class="pilar-item reveal">
-                <video autoplay loop muted playsinline poster="media/topografia-preview.jpg" class="pilar-video-bg">
-                    <source src="media/soluciones-topograficas.mp4" type="video/mp4">
-                </video>
-                <div class="pilar-content">
-                    <h3>Soluciones Topográficas</h3>
-                    <p>Levantamientos y gestión de datos geoespaciales de alta calidad. Combinamos GIS, Drones y LIDAR.</p>
+    <section id="servicios" class="pilares">
+        
+        <div class="pilar-item reveal delay-1">
+            <video loop muted playsinline class="pilar-video-bg">
+                <source src="media/video/soluciones-topograficas.mp4" type="video/mp4">
+            </video>
+            <div class="pilar-content">
+                <div class="pilar-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <h3>Soluciones Topográficas</h3>
+                <p>Levantamientos, análisis catastral y gestión de datos geoespaciales de alta calidad para decisiones seguras. Combinamos GIS, Drones y LIDAR.</p>
+            </div>
+        </div>
+
+        <div class="pilar-item reveal delay-2">
+            <video loop muted playsinline class="pilar-video-bg">
+                <source src="media/video/equipos-topograficos.mp4" type="video/mp4">
+            </video>
+            <div class="pilar-content">
+                <div class="pilar-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <h3>Asesoría Tecnológica</h3>
+                <p>Venta de equipo de última generación para sus necesidades topografía. Brindamos capacitación, seguimiento y soporte técnico confiable.</p>
+            </div>
+        </div>
+
+        <div class="pilar-item reveal delay-3">
+            <video loop muted playsinline class="pilar-video-bg">
+                <source src="media/video/escaneo-lidar.mp4" type="video/mp4">
+            </video>
+            <div class="pilar-content">
+                <div class="pilar-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5.07 5.07l13.86 13.86M5.07 18.93L18.93 5.07"></path></svg>
+                </div>
+                <h3>Escaneo LIDAR Integral</h3>
+                <p>Levantamientos 3D con precisión milimétrica. Especialistas en terrenos complejos y zonas boscosas para generar curvas de nivel depuradas.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="workflow" class="workflow">
+    <div class="section-header reveal">
+        <h2>Ingeniería de Captura</h2>
+        <p>Un flujo de trabajo diseñado para la integridad absoluta de los datos geoespaciales.</p>
+    </div>
+
+    <div class="bento-grid">
+        <div class="bento-item step-captura reveal">
+            <div class="bento-bg" style="background-image: url('media/images/workflow-1.jpg');"></div>
+            <div class="bento-content">
+                <span class="step-num">01</span>
+                <h3>Captura de Datos</h3>
+                <div class="bento-hover-info">
+                    <p>Planificación de vuelo autónomo optimizado. Utilizamos sensores LiDAR de grado topográfico y fotogrametría de alta resolución para capturar cada detalle del terreno.</p>
                 </div>
             </div>
-            </section>
+        </div>
 
-        <section id="workflow" class="workflow">
-            <div class="section-header reveal">
-                <h2>Del campo al escritorio</h2>
-                <p>Un flujo de trabajo diseñado para la integridad de los datos.</p>
+        <div class="bento-item step-proceso reveal delay-1">
+            <div class="bento-bg" style="background-image: url('media/images/workflow-2.jpg');"></div>
+            <div class="bento-content">
+                <span class="step-num">02</span>
+                <h3>Procesamiento Cinemático</h3>
+                <div class="bento-hover-info">
+                    <p>Computación de nubes de puntos con correcciones PPK/RTK para garantizar precisión milimétrica y fidelidad absoluta en el modelo digital.</p>
+                </div>
             </div>
-            </section>
+        </div>
 
-        <section class="entregables reveal">
-            <div class="mesh-container">
-                <iframe title="Topographic Drone Mapping" 
-                    loading="lazy"
-                    src="https://sketchfab.com/models/1a8837d2c77f4400a0893ae1c15e305-7/embed?autostart=1&ui_theme=dark">
-                </iframe>
+        <div class="bento-item step-analisis reveal delay-2">
+            <div class="bento-bg" style="background-image: url('media/images/workflow-3.jpg');"></div>
+            <div class="bento-content">
+                <span class="step-num">03</span>
+                <h3>Análisis de Ingeniería</h3>
+                <div class="bento-hover-info">
+                    <p>Interpretación técnica de los activos, generación de curvas de nivel depuradas y reportes de volumen específicos para su industria.</p>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section id="contacto" class="contact">
-            <div class="form-card reveal">
-                <form id="mi-formulario">
-                    <input type="text" id="nombre" placeholder="Nombre completo" required>
-                    <input type="email" id="email" placeholder="Correo electrónico" required>
-                    
-                    <div class="file-input-wrapper">
-                        <label for="archivo">Adjuntar plano o KML (Máx 5MB)</label>
-                        <input type="file" id="archivo" accept=".pdf,.kml,.kmz,.dwg">
-                        <small id="file-name">Ningún archivo seleccionado</small>
+        <div class="bento-item step-entrega reveal delay-3">
+            <div class="bento-bg" style="background-image: url('media/images/workflow-4.jpg');"></div>
+            <div class="bento-content">
+                <span class="step-num">04</span>
+                <h3>Entrega de Activos</h3>
+                <div class="bento-hover-info">
+                    <p>Despliegue de resultados en formatos nativos (CAD, GIS, BIM) listos para la toma de decisiones inmediata.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="entregables reveal">
+        <div>
+            <h2>Resultados Listos para Ingeniería</h2>
+            <p>No entregamos "fotos", entregamos activos digitales compatibles con su ecosistema de trabajo (CAD, BIM, GIS).</p>
+            <ul class="file-list">
+                <li>Nubes de puntos densificadas <span class="file-type">.LAS / .LAZ</span></li>
+                <li>Modelos Digitales de Terreno (MDT) <span class="file-type">.GeoTIFF</span></li>
+                <li>Ortomosaicos de alta resolución <span class="file-type">.ECW / .TIFF</span></li>
+                <li>Cálculos de Volumetría y Perfiles <span class="file-type">.CSV / .PDF</span></li>
+            </ul>
+        </div>
+        <div class="mesh-container">
+            <iframe title="Topographic Drone Mapping" 
+                frameborder="0" 
+                allowfullscreen 
+                mozallowfullscreen="true" 
+                webkitallowfullscreen="true" 
+                allow="autoplay; fullscreen; xr-spatial-tracking" 
+                src="https://sketchfab.com/models/1a8837d2c77f4400a0893ae1c15e305-7/embed?autostart=1&autospin=0.2&ui_theme=dark&ui_infos=0">
+            </iframe>
+        </div>
+    </section>
+
+    <section id="equipo" class="team-section">
+        <div class="section-header reveal">
+            <h2>Nuestro Equipo</h2>
+            <p>Somos un colectivo multidisciplinario donde la experiencia en campo es respaldada por una unidad interna de 
+            <b>ingeniería de datos, expertos en cálculo, dibujo técnico y modelamiento 3D (BIM/VDC)</b>. 
+            Esta estructura nos permite no solo capturar información, sino procesarla y depurarla bajo los más estrictos 
+            estándares de precisión para entregar activos digitales listos para su implementación inmediata.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal delay-1">
+                <div class="member-img-container">
+                    <img src="media/images/team/Ana.jpeg" alt="Ana Maria Soto" class="member-img">
+                </div>
+                <div class="member-info">
+                    <h3>Ana Maria Soto</h3>
+                    <span class="role">Topógrafa & Servicio al Cliente</span>
+                    <p>Con más de 8 años de experiencia, Ana lidera la planificación técnica. Su trayectoria con las Naciones Unidas en leyes de impacto ambiental garantiza que cada proyecto cumpla con los más altos estándares regulatorios.</p>
+                </div>
+            </div>
+
+            <div class="team-card reveal delay-2">
+                <div class="member-img-container">
+                    <img src="media/images/team/Beto.jpeg" alt="Humberto Campos" class="member-img">
+                </div>
+                <div class="member-info">
+                    <h3>Humberto Campos</h3>
+                    <span class="role">Especialista en Operaciones Aéreas</span>
+                    <p>Nuestro piloto estrella. "Beto" es el responsable de convertir la planificación en realidad, ejecutando vuelos guiados con precisión quirúrgica para capturar los datos base de cada gemelo digital.</p>
+                </div>
+            </div>
+
+            <div class="team-card reveal delay-3">
+                <div class="member-info">
+                    <div class="member-img-container">
+                        <img src="media/images/team/Neva.jpeg" alt="Nevardo Cortez" class="member-img">
                     </div>
-
-                    <textarea id="mensaje" placeholder="¿Qué proyecto desea digitalizar?" required></textarea>
-                    <button type="submit" id="btn-submit" class="btn-submit">Enviar Solicitud Técnica</button>
-                </form>
+                    <h3>Nevardo Cortez</h3>
+                    <span class="role">Director Ejecutivo</span>
+                    <p>Neva es el motor tecnológico y arquitecto del backend. Como director ejecutivo, define la ruta de innovación del equipo, asegurando que nuestras soluciones de software y hardware estén a la vanguardia global.</p>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <h2>Hablemos de su próximo proyecto</h2>
+        <p>Diseñamos planes de captura a la medida de sus objetivos técnicos.</p>
+        <div class="form-card reveal">
+            <form id="mi-formulario">
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                
+                <label style="display: block; margin-bottom: 5px; color: var(--text-muted); font-size: 0.9rem;">Adjuntar plano, KML o imagen (Max 5MB)</label>
+                <input type="file" id="archivo" accept=".pdf,.kml,.kmz,.dwg,.jpg,.png" style="background: var(--bg-main); cursor: pointer; color: var(--text-muted); padding-top: 15px;">
+                
+                <textarea rows="4" id="mensaje" placeholder="¿Qué activo o terreno necesita digitalizar?" required></textarea>
+                <button type="submit" id="btn-submit" class="btn-submit">Enviar Solicitud Técnica</button>
+            </form>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 Especialistas en Drones. Costa Rica.</p>
+        <div class="social-links">
+            <a href="https://instagram.com/tu_usuario" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com/tu_canal" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+        </div>
+        <p>&copy; 2026 Especialistas en Drones. Servicios de Consultoría Técnica Aérea.</p>
+        
+        <a href="https://wa.me/50683530842?text=Hola,%20me%20gustaría%20solicitar%20información." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
     </footer>
 
 </body>

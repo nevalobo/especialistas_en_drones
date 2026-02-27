@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     // --- 1. CONFIGURACIÓN DE GOOGLE ANALYTICS ---
-    // Lo ponemos al principio para que rastree la visita desde el segundo cero
+    // Al asignarlo a 'window', nos aseguramos de que 'gtag' sea global
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    
     gtag('js', new Date());
     gtag('config', 'G-Q9BWERW66V', {
         'anonymize_ip': true,
@@ -23,10 +24,43 @@ document.addEventListener("DOMContentLoaded", function() {
     revealElements.forEach((el) => observer.observe(el));
 
 
-    // --- 3. LÓGICA DEL FORMULARIO DE CONTACTO CON ARCHIVOS ---
+    // --- 3. REPRODUCCIÓN INTELIGENTE DE VIDEOS (PC vs Mobile) ---
+    const pilarItems = document.querySelectorAll('.pilar-item');
+    const supportsHover = window.matchMedia('(hover: hover)').matches;
+
+    pilarItems.forEach(item => {
+        const video = item.querySelector('video');
+        if (!video) return;
+
+        if (supportsHover) {
+            // Lógica para Desktop (Hover)
+            item.addEventListener('mouseenter', () => {
+                video.play().catch(error => console.log("Reproducción bloqueada:", error));
+            });
+
+            item.addEventListener('mouseleave', () => {
+                video.pause();
+            });
+        } else {
+            // Lógica para Mobile (Scroll/Intersection)
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play().catch(error => console.log("Error en mobile:", error));
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.6 }); 
+
+            videoObserver.observe(item);
+        }
+    });
+
+    // --- 4. LÓGICA DEL FORMULARIO DE CONTACTO (APPS SCRIPT) ---
     const form = document.getElementById('mi-formulario');
     const btnSubmit = document.getElementById('btn-submit');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxd2zQ02YdaOb2okmz68EFrKyNgHs2r7xjwpmOhz5qFewDdmceOvAdcJK3YJQAZW9CnTQ/exec'; 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyFyXXdt9cvgxojbiIRTI4qO6E_8xvLYxtA4VH_XlfbdPtirromrPTPLPzjygkIgZ83gA/exec'; 
 
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -53,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 fileName = file.name;
                 fileMimeType = file.type;
                 fileBase64 = await toBase64(file);
-                fileBase64 = fileBase64.split(',')[1];
+                fileBase64 = fileBase64.split(',')[1]; // Limpiamos la cabecera del Base64
             }
 
             const data = {
@@ -76,13 +110,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Evento de conversión para GA4
                     gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Formulario Drones' });
                     
-                    alert('¡Gracias! Hemos recibido su solicitud. Nos pondremos en contacto pronto.');
+                    alert('¡Gracias! Hemos recibido su solicitud técnica. Nos pondremos en contacto pronto.');
                     form.reset();
                 } else {
                     throw new Error('Error en respuesta de red');
                 }
             } catch (error) {
-                alert('Hubo un error al conectar con el servidor. Intente de nuevo más tarde.');
+                alert('Hubo un error al conectar con nuestros servidores. Intente de nuevo más tarde.');
                 console.error('Error!', error.message);
             } finally {
                 btnSubmit.textContent = 'Enviar Solicitud Técnica';
@@ -91,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Helper para convertir el archivo a Base64
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
