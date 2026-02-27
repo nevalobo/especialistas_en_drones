@@ -1,5 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    window.addEventListener('scroll', () => {
+    if (window.innerWidth <= 900) {
+        const progressBar = document.getElementById("scroll-progress");
+        if (progressBar) {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+        }
+    }
+});
+
     window.addEventListener('load', () => {
         const preloader = document.getElementById('preloader');
         preloader.style.opacity = '0';
@@ -84,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            btnSubmit.textContent = 'Procesando envío...';
+            btnSubmit.textContent = 'Sincronizando telemetría...';
             btnSubmit.disabled = true;
 
             const fileInput = document.getElementById('archivo');
@@ -127,8 +139,30 @@ document.addEventListener("DOMContentLoaded", function() {
                 if(response.ok) {
                     // Evento de conversión para GA4
                     gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Formulario Drones' });
+
+                    // --- EFECTO CLEVER DE DRONES ---
+                    btnSubmit.style.backgroundColor = "#25d366"; // Color éxito (verde)
+                    btnSubmit.innerHTML = "<span>¡Plan de vuelo recibido! 🛰️</span>";
                     
-                    alert('¡Gracias! Hemos recibido su solicitud técnica. Nos pondremos en contacto pronto.');
+                    // Cambiamos el mensaje del formulario por uno más profesional
+                    const formCard = document.querySelector('.form-card');
+                    formCard.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; animation: fadeIn 0.8s ease;">
+                            <svg viewBox="0 0 24 24" width="60" height="60" stroke="#2997ff" stroke-width="2" fill="none" style="margin-bottom: 20px;">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <h3 style="color: var(--text-main); font-size: 1.8rem; margin-bottom: 15px;">Enlace Establecido</h3>
+                            <p style="color: var(--text-muted); line-height: 1.6;">
+                                Nuestros sistemas han procesado sus coordenadas con éxito. <br>
+                                <b>Un especialista técnico revisará sus archivos</b> para preparar el despliegue de su presupuesto. 
+                                Recibirá una respuesta en menos de 24 horas.
+                            </p>
+                            <button onclick="location.reload()" style="margin-top: 30px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                                Enviar otra solicitud
+                            </button>
+                        </div>
+                    `;
                     form.reset();
                 } else {
                     throw new Error('Error en respuesta de red');
@@ -150,7 +184,31 @@ document.addEventListener("DOMContentLoaded", function() {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
+
+
+    // --- OPTIMIZACIÓN DE CONEXIÓN ---
+    if (navigator.connection && navigator.connection.saveData) {
+        // Si el usuario ahorra datos, detenemos los videos pesados del Hero
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            heroVideo.removeAttribute('autoplay');
+            heroVideo.pause();
+            console.log("Modo ahorro de datos activo: Video pausado para conservar ancho de banda.");
+        }
+    }
+
 });
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
 
 console.log("%c Especialistas en Drones ", "color: #2997ff; font-size: 20px; font-weight: bold; background: #000; padding: 5px; border-radius: 5px;");
 console.log("Ingeniería aérea de precisión lista. ¿Buscando el código fuente? Trabajamos con los mejores estándares.");

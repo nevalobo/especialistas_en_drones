@@ -24,8 +24,27 @@
     <link rel="preload" as="image" href="media/preview.png">
     
     <script src="main.js" defer></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Especialistas en Drones",
+        "image": "https://www.especialistasendrones.com/media/preview.png",
+        "url": "https://www.especialistasendrones.com",
+        "telephone": "+50683530842",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CR"
+        },
+        "serviceType": ["Topografía", "Fotogrametría", "LiDAR", "Inspección Industrial"]
+    }
+    </script>
+
 </head>
 <body>
+
+    <div id="scroll-progress"></div>
 
     <div id="preloader">
         <svg class="loader-logo" viewBox="0 0 24 24" fill="none" stroke="#2997ff" stroke-width="2">
@@ -254,7 +273,7 @@
                     <input type="file" id="archivo" accept=".pdf,.kml,.kmz,.dwg,.jpg,.png" style="background: var(--bg-main); cursor: pointer; color: var(--text-muted); padding-top: 15px;">
                     
                     <textarea rows="4" id="mensaje" placeholder="¿Qué activo o terreno necesita digitalizar?" required></textarea>
-                    <button type="submit" id="btn-submit" class="btn-submit">Enviar Solicitud Técnica</button>
+                    <button type="submit" id="btn-submit" class="btn-submit"><span id="btn-text">Enviar Solicitud Técnica</span></button>
                 </form>
             </div>
         </section>
