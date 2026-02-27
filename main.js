@@ -57,6 +57,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // --- EFECTO NAV TRANSPARENTE AL HACER SCROLL ---
+    const nav = document.querySelector('nav');
+    
+    window.addEventListener('scroll', () => {
+        // Si el usuario baja más de 50px, agregamos la clase. Si no, la quitamos.
+        if (window.scrollY > 50) {
+            nav.classList.add('nav-scrolled');
+        } else {
+            nav.classList.remove('nav-scrolled');
+        }
+    });
+
     // --- 4. LÓGICA DEL FORMULARIO DE CONTACTO (APPS SCRIPT) ---
     const form = document.getElementById('mi-formulario');
     const btnSubmit = document.getElementById('btn-submit');
