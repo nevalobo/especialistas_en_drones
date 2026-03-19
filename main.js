@@ -201,6 +201,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+// --- CARGA DINÁMICA DE ENTREGABLES (ANTI-JUMP) ---
+const iframeObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const iframe = entry.target.querySelector('iframe');
+            if (iframe && iframe.dataset.src) {
+                // Inyectamos el src real solo cuando el usuario está frente al contenedor
+                iframe.src = iframe.dataset.src;
+                iframe.removeAttribute('data-src');
+                // Dejamos de observar este contenedor una vez cargado
+                observer.unobserve(entry.target);
+            }
+        }
+    });
+}, { 
+    threshold: 0.2, // Se carga cuando el 20% del contenedor es visible
+    rootMargin: "0px 0px 200px 0px" // Empezamos a cargar 200px antes de llegar para que sea fluido
+});
+
+document.querySelectorAll('.mesh-container').forEach(container => {
+    iframeObserver.observe(container);
+});
+
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
