@@ -2,10 +2,12 @@
 
 ## [Unreleased]
 
-### Pending (requiere ffmpeg, no instalado)
-- Recomprimir `media/video/escaneo-lidar.mp4` (5.7MB) a <3MB.
-- Añadir `poster` a los 3 videos de pilares.
-- Hospedar el hero video localmente (hoy hotlinkeado desde imgur).
+### Added
+- `poster` (frame representativo, JPG) para el hero y los 3 videos de pilares, más `preload="none"` en los pilares para no descargarlos hasta que se necesiten. Posters en `media/video/posters/`.
+- Hero video hospedado localmente (`media/video/hero-drone-flight.mp4`), eliminando la dependencia del hotlink de imgur.
+
+### Changed
+- Recomprimidos los videos con ffmpeg (H.264 CRF 30, escala máx 1280px, sin audio): pilares de ~12.7MB a ~3.8MB (escaneo-lidar 5.7→2.4MB, soluciones 3.8→0.8MB, equipos 3.0→0.6MB); hero de imgur (5.2MB) → local 1.0MB. Carpeta `media/` reducida a ~9MB.
 
 ## [2026-09-22] - Catálogo + auditoría fases 1-3
 
