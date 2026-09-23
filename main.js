@@ -118,35 +118,86 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnSubmit = document.getElementById('btn-submit');
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyFyXXdt9cvgxojbiIRTI4qO6E_8xvLYxtA4VH_XlfbdPtirromrPTPLPzjygkIgZ83gA/exec'; 
 
+    // Helper para convertir el archivo a Base64
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    // Muestra un mensaje inline en el formulario (reemplaza los alert() nativos).
+    const formStatus = document.getElementById('form-status');
+    const showFormError = (msg) => {
+        if (!formStatus) return;
+        formStatus.textContent = msg;
+        formStatus.className = 'form-status form-status-error';
+    };
+    const clearFormStatus = () => {
+        if (!formStatus) return;
+        formStatus.textContent = '';
+        formStatus.className = 'form-status';
+    };
+
+    const emailInput = document.getElementById('email');
+    const fileInput = document.getElementById('archivo');
+    const fileLabel = document.querySelector('.form-file-label');
+    const fileLabelDefault = fileLabel ? fileLabel.textContent : '';
+    const MAX_FILE = 5 * 1024 * 1024;
+
+    // Feedback en vivo: mostrar el nombre del archivo elegido y validar su tamaño.
+    if (fileInput && fileLabel) {
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length === 0) { fileLabel.textContent = fileLabelDefault; clearFormStatus(); return; }
+            const f = fileInput.files[0];
+            if (f.size > MAX_FILE) {
+                showFormError('El archivo supera los 5MB. Por favor adjunte uno más liviano.');
+                fileInput.value = '';
+                fileLabel.textContent = fileLabelDefault;
+            } else {
+                clearFormStatus();
+                fileLabel.textContent = `Archivo: ${f.name}`;
+            }
+        });
+    }
+
+    // Validación de email al salir del campo (blur).
+    if (emailInput) {
+        emailInput.addEventListener('blur', () => {
+            if (emailInput.value && !emailInput.checkValidity()) {
+                showFormError('Revise el correo electrónico: parece no ser válido.');
+            } else {
+                clearFormStatus();
+            }
+        });
+    }
+
     if (form) {
         const btnText = document.getElementById('btn-text');
         const setBtnText = (txt) => { if (btnText) btnText.textContent = txt; };
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            clearFormStatus();
 
             setBtnText('Sincronizando telemetría...');
             btnSubmit.disabled = true;
 
-            const fileInput = document.getElementById('archivo');
             let fileBase64 = '';
             let fileName = '';
             let fileMimeType = '';
 
-            if (fileInput.files.length > 0) {
+            if (fileInput && fileInput.files.length > 0) {
                 const file = fileInput.files[0];
-                
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('El archivo es muy grande. Por favor adjunte un archivo menor a 5MB.');
+                if (file.size > MAX_FILE) {
+                    showFormError('El archivo es muy grande. Por favor adjunte un archivo menor a 5MB.');
                     setBtnText('Enviar Solicitud Técnica');
                     btnSubmit.disabled = false;
                     return;
                 }
-
                 fileName = file.name;
                 fileMimeType = file.type;
-                fileBase64 = await toBase64(file);
-                fileBase64 = fileBase64.split(',')[1]; // Limpiamos la cabecera del Base64
+                fileBase64 = (await toBase64(file)).split(',')[1]; // quitar cabecera data:
             }
 
             const data = {
@@ -158,61 +209,65 @@ document.addEventListener("DOMContentLoaded", function() {
                 archivoBase64: fileBase64
             };
 
+            // Timeout: si Apps Script cuelga, abortamos a los 20s para no dejar el botón colgado.
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20000);
+
             try {
                 const response = await fetch(scriptURL, {
                     method: 'POST',
                     body: JSON.stringify(data),
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    signal: controller.signal
                 });
 
-                if(response.ok) {
-                    // Evento de conversión para GA4
+                if (response.ok) {
                     gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Formulario Drones' });
-
-                    // --- EFECTO CLEVER DE DRONES ---
-                    btnSubmit.style.backgroundColor = "#25d366"; // Color éxito (verde)
-                    btnSubmit.innerHTML = "<span>¡Plan de vuelo recibido! 🛰️</span>";
-                    
-                    // Cambiamos el mensaje del formulario por uno más profesional
-                    const formCard = document.querySelector('.form-card');
-                    formCard.innerHTML = `
-                        <div style="text-align: center; padding: 40px 20px; animation: fadeIn 0.8s ease;">
-                            <svg viewBox="0 0 24 24" width="60" height="60" stroke="#2997ff" stroke-width="2" fill="none" style="margin-bottom: 20px;">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                            <h3 style="color: var(--text-main); font-size: 1.8rem; margin-bottom: 15px;">Enlace Establecido</h3>
-                            <p style="color: var(--text-muted); line-height: 1.6;">
-                                Nuestros sistemas han procesado sus coordenadas con éxito. <br>
-                                <b>Un especialista técnico revisará sus archivos</b> para preparar el despliegue de su presupuesto. 
-                                Recibirá una respuesta en menos de 24 horas.
-                            </p>
-                            <button onclick="location.reload()" style="margin-top: 30px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; cursor: pointer;">
-                                Enviar otra solicitud
-                            </button>
-                        </div>
-                    `;
+                    renderSuccess();
                     form.reset();
                 } else {
                     throw new Error('Error en respuesta de red');
                 }
             } catch (error) {
-                alert('Hubo un error al conectar con nuestros servidores. Intente de nuevo más tarde.');
-                console.error('Error!', error.message);
-            } finally {
+                showFormError('Hubo un error al enviar su solicitud. Intente de nuevo o escríbanos por WhatsApp.');
+                console.error('Form submit error:', error.message);
                 setBtnText('Enviar Solicitud Técnica');
                 btnSubmit.disabled = false;
+            } finally {
+                clearTimeout(timeout);
             }
         });
-    }
 
-    // Helper para convertir el archivo a Base64
-    const toBase64 = file => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
+        // Construye la vista de éxito con DOM APIs (sin innerHTML ni onclick inline → CSP-safe).
+        function renderSuccess() {
+            const formCard = document.querySelector('.form-card');
+            if (!formCard) return;
+            formCard.replaceChildren();
+
+            const wrap = document.createElement('div');
+            wrap.className = 'form-success';
+
+            wrap.innerHTML = ''; // limpio por claridad
+            const svgNS = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(svgNS, 'svg');
+            svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('width', '60'); svg.setAttribute('height', '60');
+            svg.setAttribute('stroke', '#2997ff'); svg.setAttribute('stroke-width', '2'); svg.setAttribute('fill', 'none');
+            svg.classList.add('form-success-icon');
+            const p1 = document.createElementNS(svgNS, 'path'); p1.setAttribute('d', 'M22 11.08V12a10 10 0 1 1-5.93-9.14');
+            const p2 = document.createElementNS(svgNS, 'polyline'); p2.setAttribute('points', '22 4 12 14.01 9 11.01');
+            svg.append(p1, p2);
+
+            const h3 = document.createElement('h3'); h3.textContent = 'Enlace Establecido';
+            const p = document.createElement('p');
+            p.innerHTML = 'Nuestros sistemas han procesado sus coordenadas con éxito.<br><b>Un especialista técnico revisará sus archivos</b> para preparar el despliegue de su presupuesto. Recibirá una respuesta en menos de 24 horas.';
+            const btn = document.createElement('button');
+            btn.type = 'button'; btn.className = 'form-success-btn'; btn.textContent = 'Enviar otra solicitud';
+            btn.addEventListener('click', () => location.reload());
+
+            wrap.append(svg, h3, p, btn);
+            formCard.appendChild(wrap);
+        }
+    }
 
 
     // --- OPTIMIZACIÓN DE CONEXIÓN ---
@@ -222,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (heroVideo) {
             heroVideo.removeAttribute('autoplay');
             heroVideo.pause();
-            console.log("Modo ahorro de datos activo: Video pausado para conservar ancho de banda.");
+            console.debug("Modo ahorro de datos activo: Video pausado para conservar ancho de banda.");
         }
     }
 
@@ -256,13 +311,25 @@ document.querySelectorAll('.mesh-container').forEach(container => {
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || href.length < 2) return; // ignorar anclas vacías
+        const target = document.querySelector(href);
+        if (!target) return; // null-guard: no romper si el ancla no existe
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        target.scrollIntoView({ behavior: 'smooth' });
     });
 });
 
 
 console.log("%c Especialistas en Drones ", "color: #2997ff; font-size: 20px; font-weight: bold; background: #000; padding: 5px; border-radius: 5px;");
 console.log("Ingeniería aérea de precisión lista. ¿Buscando el código fuente? Trabajamos con los mejores estándares.");
+
+// --- SERVICE WORKER (PWA) ---
+// Solo sobre http/https (no file://); registra el SW para offline + installability.
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.debug('SW no registrado:', err && err.message);
+        });
+    });
+}

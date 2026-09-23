@@ -10,24 +10,41 @@
     <meta name="author" content="Especialistas en Drones">
 
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Especialistas en Drones">
+    <meta property="og:locale" content="es_CR">
     <meta property="og:url" content="https://www.especialistasendrones.com/">
     <meta property="og:title" content="Inteligencia Aérea y Especialistas en Drones">
     <meta property="og:description" content="Datos que eliminan la incertidumbre. Captura masiva de datos con drones para proyectos de alta precisión.">
     <meta property="og:image" content="https://www.especialistasendrones.com/media/images/preview.jpg">
+    <meta property="og:image:width" content="1193">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Especialistas en Drones — inteligencia aérea y geoespacial">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Inteligencia Aérea y Especialistas en Drones">
+    <meta name="twitter:description" content="Datos que eliminan la incertidumbre. Captura masiva de datos con drones para proyectos de alta precisión.">
+    <meta name="twitter:image" content="https://www.especialistasendrones.com/media/images/preview.jpg">
 
     <link rel="canonical" href="https://www.especialistasendrones.com/">
+    <link rel="alternate" hreflang="es-cr" href="https://www.especialistasendrones.com/">
+    <link rel="alternate" hreflang="x-default" href="https://www.especialistasendrones.com/">
     <meta name="theme-color" content="#000000">
 
-    <!-- Preconnect a orígenes de terceros para acelerar la primera conexión (fuentes, analytics) -->
+    <!-- Preconnect a orígenes de terceros para acelerar la primera conexión (fuentes, analytics, modelos 3D) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://arcg.is">
+
+    <!-- Preload del poster del hero: es el elemento LCP (se ve antes de que arranque el video). -->
+    <link rel="preload" as="image" href="media/video/posters/hero.jpg" fetchpriority="high">
 
     <!-- GA4: se carga aquí y se CONFIGURA una sola vez en main.js (con anonymize_ip). -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q9BWERW66V"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
+    <link rel="apple-touch-icon" href="media/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     
@@ -37,20 +54,39 @@
     {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
+        "@id": "https://www.especialistasendrones.com/#business",
         "name": "Especialistas en Drones",
+        "description": "Captura masiva de datos y procesamiento geoespacial con drones: topografía, fotogrametría, LiDAR e inspección industrial en Costa Rica.",
         "image": "https://www.especialistasendrones.com/media/images/preview.jpg",
         "url": "https://www.especialistasendrones.com",
         "telephone": "+50662885132",
+        "priceRange": "$$",
         "address": {
             "@type": "PostalAddress",
             "addressCountry": "CR"
         },
-        "serviceType": ["Topografía", "Fotogrametría", "LiDAR", "Inspección Industrial"]
+        "areaServed": {
+            "@type": "Country",
+            "name": "Costa Rica"
+        },
+        "serviceType": ["Topografía", "Fotogrametría", "LiDAR", "Inspección Industrial"],
+        "sameAs": [
+            "https://instagram.com/especialistasendrones",
+            "https://www.youtube.com/channel/UC5RbI-hhkYxQgb4f0DH-O3A"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+50662885132",
+            "contactType": "customer service",
+            "availableLanguage": ["Spanish"]
+        }
     }
     </script>
 
 </head>
 <body>
+
+    <a href="#main" class="skip-link">Saltar al contenido</a>
 
     <div id="scroll-progress"></div>
 
@@ -61,7 +97,7 @@
         </svg>
     </div>
 
-    <nav>
+    <nav aria-label="Navegación principal">
         <a href="#inicio" class="logo">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12 2 2 12 12 22 22 12 12 2"></polygon>
@@ -81,9 +117,9 @@
         </div>
     </nav>
 
-    <main>
+    <main id="main">
         <header id="inicio" class="hero">
-            <video autoplay loop muted playsinline class="hero-video" poster="media/video/posters/hero.jpg">
+            <video autoplay loop muted playsinline class="hero-video" poster="media/video/posters/hero.jpg" preload="metadata">
                 <source src="media/video/hero-drone-flight.mp4" type="video/mp4">
                 Tu navegador no soporta videos HTML5.
             </video>
@@ -91,6 +127,10 @@
             <div class="hero-content">
                 <h1>Datos que eliminan la incertidumbre.</h1>
                 <p>Expertos en captura masiva de datos y procesamiento geoespacial para ingeniería, agricultura, minería y gestión de activos críticos.</p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="hero-cta hero-cta-primary">Solicitar cotización</a>
+                    <a href="#servicios" class="hero-cta hero-cta-secondary">Ver servicios</a>
+                </div>
             </div>
         </header>
 
@@ -150,7 +190,7 @@
 
             <div class="bento-grid">
                 <div class="bento-item step-captura reveal">
-                    <div class="bento-bg" style="background-image: url('media/images/workflow-1.webp');"></div>
+                    <div class="bento-bg"></div>
                     <div class="bento-content">
                         <span class="step-num">01</span>
                         <h3>Captura de Datos</h3>
@@ -161,7 +201,7 @@
                 </div>
 
                 <div class="bento-item step-proceso reveal delay-1">
-                    <div class="bento-bg" style="background-image: url('media/images/workflow-2.webp');"></div>
+                    <div class="bento-bg"></div>
                     <div class="bento-content">
                         <span class="step-num">02</span>
                         <h3>Procesamiento Cinemático</h3>
@@ -172,7 +212,7 @@
                 </div>
 
                 <div class="bento-item step-analisis reveal delay-2">
-                    <div class="bento-bg" style="background-image: url('media/images/workflow-3.webp');"></div>
+                    <div class="bento-bg"></div>
                     <div class="bento-content">
                         <span class="step-num">03</span>
                         <h3>Análisis de Ingeniería</h3>
@@ -183,7 +223,7 @@
                 </div>
 
                 <div class="bento-item step-entrega reveal delay-3">
-                    <div class="bento-bg" style="background-image: url('media/images/workflow-4.webp');"></div>
+                    <div class="bento-bg"></div>
                     <div class="bento-content">
                         <span class="step-num">04</span>
                         <h3>Entrega de Activos</h3>
@@ -245,13 +285,15 @@
             </div>
 
             <div class="catalogo-wrapper reveal">
-                <div class="catalogo-viewer">
-                    <iframe
-                        src="media/catalogo/catalogo.pdf#toolbar=1&view=FitH"
-                        title="Catálogo de Servicios y Equipo — Especialistas en Drones"
-                        loading="lazy">
-                    </iframe>
-                </div>
+                <!-- Portada clickeable en vez de iframe: los navegadores móviles no
+                     renderizan PDF inline; una imagen + botón funciona en todos lados. -->
+                <a href="media/catalogo/catalogo.pdf" target="_blank" rel="noopener" class="catalogo-cover" aria-label="Abrir el catálogo completo en PDF">
+                    <img src="media/catalogo/catalogo-portada.webp" alt="Portada del catálogo de servicios y equipo de Especialistas en Drones" width="1000" height="706" loading="lazy" decoding="async">
+                    <span class="catalogo-cover-overlay">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        Ver catálogo completo (22 páginas)
+                    </span>
+                </a>
                 <div class="catalogo-actions">
                     <a href="media/catalogo/catalogo.pdf" target="_blank" rel="noopener" class="btn-catalogo btn-catalogo-primary">
                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -273,7 +315,7 @@
             <div class="team-grid">
                 <div class="team-card reveal delay-1">
                     <div class="member-img-container">
-                        <img src="media/images/team/Ana.webp" alt="Ana Maria Soto" class="member-img" width="508" height="640" loading="lazy">
+                        <img src="media/images/team/Ana.webp" alt="Ana Maria Soto" class="member-img" width="508" height="640" loading="lazy" decoding="async">
                     </div>
                     <div class="member-info">
                         <h3>Ana Maria Soto</h3>
@@ -284,7 +326,7 @@
 
                 <div class="team-card reveal delay-2">
                     <div class="member-img-container">
-                        <img src="media/images/team/Alejo.webp" alt="Alejandro Rojas" class="member-img" width="506" height="640" loading="lazy">
+                        <img src="media/images/team/Alejo.webp" alt="Alejandro Rojas" class="member-img" width="506" height="640" loading="lazy" decoding="async">
                     </div>
                     <div class="member-info">
                         <h3>Alejandro Rojas</h3>
@@ -294,10 +336,10 @@
                 </div>
 
                 <div class="team-card reveal delay-3">
+                    <div class="member-img-container">
+                        <img src="media/images/team/Neva.webp" alt="Nevardo Cortez" class="member-img" width="508" height="640" loading="lazy" decoding="async">
+                    </div>
                     <div class="member-info">
-                        <div class="member-img-container">
-                            <img src="media/images/team/Neva.webp" alt="Nevardo Cortez" class="member-img" width="508" height="640" loading="lazy">
-                        </div>
                         <h3>Nevardo Cortez</h3>
                         <span class="role">Director Ejecutivo</span>
                         <p>Neva es el motor tecnológico y arquitecto del backend. Como director ejecutivo, define la ruta de innovación del equipo, asegurando que nuestras soluciones de software y hardware estén a la vanguardia global.</p>
@@ -322,6 +364,7 @@
 
                     <label for="mensaje" class="sr-only">¿Qué activo o terreno necesita digitalizar?</label>
                     <textarea rows="4" id="mensaje" placeholder="¿Qué activo o terreno necesita digitalizar?" required></textarea>
+                    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
                     <button type="submit" id="btn-submit" class="btn-submit"><span id="btn-text">Enviar Solicitud Técnica</span></button>
                 </form>
             </div>
@@ -339,13 +382,13 @@
         </div>
         <p>&copy; 2026 Especialistas en Drones. Servicios de Consultoría Técnica Aérea.</p>
 
-        <p style="margin-top: 10px;">
-            <a href="privacidad.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.75rem; transition: color 0.3s;">
+        <p class="footer-legal">
+            <a href="privacidad.html" class="footer-legal-link">
                 Política de Privacidad y Confidencialidad
             </a>
         </p>
         
-        <a href="https://wa.me/50662885132?text=Hola,%20me%20gustaría%20solicitar%20información." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/50662885132?text=Hola,%20me%20gustaría%20solicitar%20información." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         </a>
     </footer>
