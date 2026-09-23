@@ -1,20 +1,56 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    window.addEventListener('scroll', () => {
-    if (window.innerWidth <= 900) {
-        const progressBar = document.getElementById("scroll-progress");
-        if (progressBar) {
+    // --- SCROLL UNIFICADO (barra de progreso móvil + nav opaco), throttleado con rAF ---
+    // Un solo listener de scroll para no recalcular layout dos veces por evento.
+    const progressBar = document.getElementById("scroll-progress");
+    const navEl = document.querySelector('nav');
+    let scrollTicking = false;
+
+    function onScroll() {
+        // Barra de progreso: solo en pantallas <=900px (donde se muestra)
+        if (progressBar && window.innerWidth <= 900) {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            progressBar.style.width = scrolled + "%";
+            progressBar.style.width = (height > 0 ? (winScroll / height) * 100 : 0) + "%";
         }
+        // Nav opaco tras 50px de scroll
+        if (navEl) {
+            navEl.classList.toggle('nav-scrolled', window.scrollY > 50);
+        }
+        scrollTicking = false;
     }
-});
+
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(onScroll);
+            scrollTicking = true;
+        }
+    }, { passive: true });
+
+    // --- MENÚ HAMBURGUESA (MÓVIL) ---
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (navToggle && navLinks) {
+        const closeMenu = () => {
+            navLinks.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        };
+        navToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        // Cerrar al tocar un enlace del menú
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+        // Cerrar con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+    }
 
     window.addEventListener('load', () => {
         setTimeout(() => {
             const preloader = document.getElementById('preloader');
+            if (!preloader) return; // guard: no romper si el div se quita
             preloader.style.opacity = '0';
             preloader.style.visibility = 'hidden';
         }, 500);
@@ -77,28 +113,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // --- EFECTO NAV TRANSPARENTE AL HACER SCROLL ---
-    const nav = document.querySelector('nav');
-    
-    window.addEventListener('scroll', () => {
-        // Si el usuario baja más de 50px, agregamos la clase. Si no, la quitamos.
-        if (window.scrollY > 50) {
-            nav.classList.add('nav-scrolled');
-        } else {
-            nav.classList.remove('nav-scrolled');
-        }
-    });
-
     // --- 4. LÓGICA DEL FORMULARIO DE CONTACTO (APPS SCRIPT) ---
     const form = document.getElementById('mi-formulario');
     const btnSubmit = document.getElementById('btn-submit');
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyFyXXdt9cvgxojbiIRTI4qO6E_8xvLYxtA4VH_XlfbdPtirromrPTPLPzjygkIgZ83gA/exec'; 
 
     if (form) {
+        const btnText = document.getElementById('btn-text');
+        const setBtnText = (txt) => { if (btnText) btnText.textContent = txt; };
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            btnSubmit.textContent = 'Sincronizando telemetría...';
+
+            setBtnText('Sincronizando telemetría...');
             btnSubmit.disabled = true;
 
             const fileInput = document.getElementById('archivo');
@@ -111,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 if (file.size > 5 * 1024 * 1024) {
                     alert('El archivo es muy grande. Por favor adjunte un archivo menor a 5MB.');
-                    btnSubmit.textContent = 'Enviar Solicitud Técnica';
+                    setBtnText('Enviar Solicitud Técnica');
                     btnSubmit.disabled = false;
                     return;
                 }
@@ -173,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert('Hubo un error al conectar con nuestros servidores. Intente de nuevo más tarde.');
                 console.error('Error!', error.message);
             } finally {
-                btnSubmit.textContent = 'Enviar Solicitud Técnica';
+                setBtnText('Enviar Solicitud Técnica');
                 btnSubmit.disabled = false;
             }
         });
@@ -210,6 +237,8 @@ const iframeObserver = new IntersectionObserver((entries, observer) => {
                 // Inyectamos el src real solo cuando el usuario está frente al contenedor
                 iframe.src = iframe.dataset.src;
                 iframe.removeAttribute('data-src');
+                // Al terminar de cargar, marcamos el contenedor para ocultar el loader "Cargando modelo 3D…"
+                iframe.addEventListener('load', () => entry.target.classList.add('loaded'), { once: true });
                 // Dejamos de observar este contenedor una vez cargado
                 observer.unobserve(entry.target);
             }
