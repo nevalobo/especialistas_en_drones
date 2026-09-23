@@ -191,8 +191,13 @@ nav.nav-scrolled {
 /* ========================================= */
 .pilares {
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Siempre son 3 pilares: fijamos 3 columnas para que no quede una columna
+       huérfana en pantallas anchas (auto-fit creaba 4 y descuadraba el header). */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px; 
+    /* Limitamos el ancho y centramos el bloque para que respire en monitores grandes. */
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 100px 10%; 
     background: var(--bg-main);
 }
@@ -478,6 +483,9 @@ footer p { color: var(--text-muted); font-size: 0.8rem; text-align: center; }
 /* Tableta y estructuras complejas */
 @media (max-width: 900px) {
     .entregables { grid-template-columns: 1fr; gap: 40px; } 
+
+    /* En tablet las 3 columnas fijas no caben: apilamos los pilares. */
+    .pilares { grid-template-columns: 1fr; }
 
     /* Apagamos el Sticky en móviles para que el texto fluya normal arriba de los iframes */
     .entregables-texto { position: relative; top: 0; }
