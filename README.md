@@ -62,3 +62,22 @@ Para aplicar cualquier cambio en vivo en la URL oficial, ejecuta la siguiente se
 3. `git push origin main`
 
 *Netlify detectará automáticamente el push y actualizará la red de distribución global en segundos.*
+
+---
+
+## 💻 Desarrollo Local
+
+Este sitio es 100% estático (sin paso de build). Para trabajarlo localmente:
+
+```bash
+# Servir con cualquier servidor estático, p. ej.:
+python3 -m http.server 8000
+# luego abrir http://localhost:8000
+```
+
+No hay `package.json` ni dependencias que instalar. Los cambios se editan directamente en `index.html`, `styles.css` y `main.js`.
+
+### Notas de mantenimiento del repo
+- Este repositorio está integrado al workspace de Projects (`~/Projects/especialistas_en_drones/`).
+- El estado del proyecto, decisiones y bitácora de sesiones viven en `MEMORY.md`.
+- Todo cambio significativo se registra en `CHANGELOG.md`.

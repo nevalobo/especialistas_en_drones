@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Load project memory and changelog on session start",
+      "trigger": "SessionStart",
+      "action": {
+        "type": "agent",
+        "prompt": "Read the MEMORY.md and CHANGELOG.md files at the project root to understand current project state, key decisions, what was done in previous sessions, and the full history of changes. If either file does not exist yet, note that it needs to be created on the first meaningful change."
+      }
+    }
+  ]
+}

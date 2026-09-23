@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Update memory and changelog before session ends",
+      "trigger": "Manual",
+      "action": {
+        "type": "agent",
+        "prompt": "The session is ending. Do both of the following:\n\n1. Update MEMORY.md: refresh 'Current State' to reflect what's working/in-progress/blocked, add a Session Log entry with today's date and a one-sentence summary of what was accomplished, and add any new Key Decisions that were made.\n\n2. Tidy CHANGELOG.md: if there are items under '## [Unreleased]', move them under a new dated heading '## [YYYY-MM-DD] - <brief session summary>' and leave a fresh empty '## [Unreleased]' section at the top. If Unreleased is empty, leave it as-is."
+      }
+    }
+  ]
+}

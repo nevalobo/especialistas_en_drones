@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Remind to update changelog after task completion",
+      "trigger": "PostTaskExec",
+      "action": {
+        "type": "agent",
+        "prompt": "A task was just completed. Update CHANGELOG.md with what was done (use the appropriate category: Added, Changed, Fixed, or Removed). Also update the Session Log in MEMORY.md with a brief summary of this work."
+      }
+    }
+  ]
+}

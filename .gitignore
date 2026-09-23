@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment / Secrets
+.env
+.env.local
+*.pem
+
+# Build artifacts
+*.o
+*.a
+*.out
+
+# Temp files
+tmp/
+temp/
+*.tmp
+*.log
+
+# Scratch / verificación (screenshots, backups de compresión, previews)
+tools/scratch/
