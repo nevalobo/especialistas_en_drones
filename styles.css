@@ -192,12 +192,11 @@ nav.nav-scrolled {
 .pilares {
     display: grid; 
     /* Siempre son 3 pilares: fijamos 3 columnas para que no quede una columna
-       huérfana en pantallas anchas (auto-fit creaba 4 y descuadraba el header). */
+       huérfana en pantallas anchas (auto-fit creaba 4 y descuadraba el header).
+       NO usar max-width aquí: acotaba el .section-header interno y lo dejaba
+       más angosto que los headers de las demás secciones. */
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px; 
-    /* Limitamos el ancho y centramos el bloque para que respire en monitores grandes. */
-    max-width: 1400px;
-    margin: 0 auto;
     padding: 100px 10%; 
     background: var(--bg-main);
 }

@@ -12,7 +12,7 @@
 
 ### Fixed
 - "Capacidades Operativas" (y todos los section-header dentro de grids) ahora se centran siempre: se les dio `grid-column: 1 / -1` en la regla general, no solo en `.pilares`. Antes, en anchos intermedios el `auto-fit` metía el header en una sola columna y quedaba descentrado.
-- La sección de servicios se veía "tirada a la izquierda" en pantallas anchas: `auto-fit` creaba una 4ª columna huérfana con solo 3 tarjetas. Ahora el grid es fijo de 3 columnas (1 en tablet/móvil), con `max-width` centrado.
+- La sección de servicios se veía "tirada a la izquierda" en pantallas anchas: `auto-fit` creaba una 4ª columna huérfana con solo 3 tarjetas. Ahora el grid es fijo de 3 columnas (1 en tablet/móvil). (Nota: un `max-width` inicial acotaba el header de servicios más angosto que los demás; se removió — el grid fijo ya resuelve la huérfana sin él.)
 - Quitado el `<link rel="preload">` de `preview.jpg` (se usa solo como og:image, nunca se renderiza en página → el navegador avisaba "preloaded but not used").
 - Quitado el `sandbox` de los iframes de ArcGIS (embeds de confianza que requieren scripts + same-origin; la combinación disparaba el warning "can escape its sandboxing" sin aportar seguridad real).
 
