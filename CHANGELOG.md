@@ -2,10 +2,30 @@
 
 ## [Unreleased]
 
+### Added
+- Skip-link "Saltar al contenido" y `id="main"` para navegación por teclado; `aria-label` en el nav y en el botón flotante de WhatsApp.
+- CTAs en el hero ("Solicitar cotización" / "Ver servicios").
+- Validación del formulario en vivo: muestra el nombre del archivo elegido, valida el email al salir del campo, y reporta errores inline (reemplaza los `alert()` nativos). El envío ahora tiene timeout de 20s (`AbortController`).
+- Open Graph completo (`og:site_name`, `og:locale`, dimensiones y `alt` de imagen) + Twitter Cards. `hreflang` es-cr y x-default.
+- Structured data (JSON-LD) enriquecido: `ProfessionalService` con `@id`, `description`, `priceRange`, `areaServed`, `sameAs` (Instagram/YouTube) y `contactPoint`.
+- PWA: manifest completo con iconos PNG 192/512 + maskable, `apple-touch-icon`, y un service worker (`sw.js`) con precache del shell (stale-while-revalidate).
+- Content-Security-Policy explícita con allowlist por origen (script/style/font/img/frame/connect), `frame-ancestors 'self'` y `form-action`.
+- Visor del catálogo rehecho: portada clickeable (`catalogo-portada.webp`, primera página) que abre el PDF en pestaña nueva — robusto en móvil, sin iframe frágil.
+- `preload` del poster del hero con `fetchpriority="high"` (LCP); `preconnect` a arcg.is; `decoding="async"` en fotos del equipo.
+
+### Changed
+- `--text-muted` de `#86868b` a `#a1a1a6` para cumplir contraste WCAG AA en texto pequeño.
+- Movidos todos los estilos inline a clases CSS (backgrounds del bento, footer legal): `index.html` queda sin `style=` inline.
+- Unificado el marcado de la tercera tarjeta de equipo con las otras dos.
+- Consolidada la regla duplicada de `.mesh-container`; `console.log` de save-data bajado a `console.debug`; smooth-scroll con null-guard.
+- Quitado `X-XSS-Protection` (deprecado; lo reemplaza la CSP).
+
 ### Fixed
 - Catálogo mostraba "especialistasendrones.com refused to connect" en producción: `X-Frame-Options: DENY` bloqueaba que el sitio embebiera su propio PDF en el iframe del visor. Cambiado a `SAMEORIGIN` (mantiene la protección anti-clickjacking pero permite embeds del mismo origen). No se veía en local porque `file://` no aplica los headers de Netlify.
+- El botón de envío ya no destruye su `<span id="btn-text">` y el `onclick` inline de la vista de éxito se reemplazó por un handler (compatible con la CSP).
 
-### Added
+### Verified
+- Todo probado con un servidor local que aplica los headers reales de `_headers` (no `file://`): CSP sin violaciones, GA/GTM operativo, fuente Inter cargando, service worker registrado, catálogo e iconos accesibles.
 - `poster` (frame representativo, JPG) para el hero y los 3 videos de pilares, más `preload="none"` en los pilares para no descargarlos hasta que se necesiten. Posters en `media/video/posters/`.
 - Hero video hospedado localmente (`media/video/hero-drone-flight.mp4`), eliminando la dependencia del hotlink de imgur.
 

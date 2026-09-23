@@ -48,3 +48,5 @@ Marketing website for **Especialistas en Drones CR** — a drone/geospatial serv
 |------|---------|
 | 2026-09-22 | Cloned repo, integrated into Projects setup, read full source, ran full audit (performance/code/UX/SEO/security). |
 | 2026-09-22 | Cerré la sección de catálogo (PDF 8.3→3.4MB) y apliqué auditoría fases 1-3 (bugs preview.png/GA4, WebP, a11y, menú hamburguesa, headers). Fase 2 de video queda pendiente (falta ffmpeg). Commits por bloques. |
+| 2026-09-22 | Fase 2 video con ffmpeg (imageio-ffmpeg vía pip): recomprimí videos + hero local. Fixes UI: grid servicios 3 cols, section-headers móvil compactos. Push a producción (usuario). |
+| 2026-09-23 | Fix urgente catálogo (X-Frame-Options DENY→SAMEORIGIN) + runbook. Auditoría fase 4+: UX/a11y (contraste AA, form en vivo, CTAs hero, skip-link), SEO/PWA (OG/Twitter, JSON-LD, manifest+iconos, service worker), seguridad/perf (CSP real, fetchpriority hero), visor catálogo→portada+botón, 0 estilos inline. Verificado con server local + headers reales (CSP sin violaciones). |
