@@ -63,6 +63,9 @@ h2 { font-size: 2.2rem; color: var(--text-main); margin-bottom: 10px; letter-spa
 .section-header { 
     text-align: center; 
     width: 100%;
+    /* Cuando el section-header vive dentro de un grid (.pilares), debe abarcar
+       TODAS las columnas; si no, el grid lo mete en una sola celda y se descentra. */
+    grid-column: 1 / -1;
     margin: 0 auto 40px auto; 
     
     /* Magia del Sticky Scroll */
@@ -93,9 +96,9 @@ h2 { font-size: 2.2rem; color: var(--text-main); margin-bottom: 10px; letter-spa
     font-weight: 600;
 }
 
-/* Regla para que el título en Servicios ocupe todo el ancho del Grid */
+/* En Servicios el header ya abarca el grid (grid-column en .section-header);
+   aquí solo ajustamos su separación de las tarjetas. */
 .pilares .section-header {
-    grid-column: 1 / -1;
     margin-bottom: 20px;
 }
 
@@ -525,6 +528,21 @@ footer p { color: var(--text-muted); font-size: 0.8rem; text-align: center; }
 
     /* Se unificaron los paddings móviles y se eliminó la sección borrada */
     .pilares, .workflow, .entregables, .contact, .team-section, .catalogo { padding: 60px 5%; }
+
+    /* Headers de sección en móvil: más compactos y legibles.
+       Antes ocupaban demasiado alto (h2 grande + padding + caja sticky apilada). */
+    h2 { font-size: 1.5rem; }
+    .hero-content h1 { font-size: 1.9rem; }
+    .section-header {
+        /* El sticky de cada header se apilaba y comía viewport; en móvil dejamos
+           el header en flujo normal para que el contenido respire y se lea. */
+        position: relative;
+        top: 0;
+        padding: 14px 16px;
+        margin-bottom: 24px;
+        border-radius: 14px;
+    }
+    .section-header p { font-size: 0.9rem; margin-top: 8px; }
 
     /* Visor de catálogo más bajo en móvil; muchos navegadores móviles no renderizan PDF inline,
        por eso los botones de descarga/abrir son la vía principal en pantallas chicas */

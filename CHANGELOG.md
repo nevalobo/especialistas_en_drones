@@ -8,6 +8,10 @@
 
 ### Changed
 - Recomprimidos los videos con ffmpeg (H.264 CRF 30, escala máx 1280px, sin audio): pilares de ~12.7MB a ~3.8MB (escaneo-lidar 5.7→2.4MB, soluciones 3.8→0.8MB, equipos 3.0→0.6MB); hero de imgur (5.2MB) → local 1.0MB. Carpeta `media/` reducida a ~9MB.
+- Headers de sección en móvil ahora son compactos y legibles: h2 reducido (2.2→1.5rem), menos padding, y se quitó el `position: sticky` en móvil (se apilaban y comían viewport).
+
+### Fixed
+- "Capacidades Operativas" (y todos los section-header dentro de grids) ahora se centran siempre: se les dio `grid-column: 1 / -1` en la regla general, no solo en `.pilares`. Antes, en anchos intermedios el `auto-fit` metía el header en una sola columna y quedaba descentrado.
 
 ## [2026-09-22] - Catálogo + auditoría fases 1-3
 
