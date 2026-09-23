@@ -38,6 +38,10 @@ Marketing website for **Especialistas en Drones CR** — a drone/geospatial serv
 - `_headers` — Netlify security headers. `manifest.json` — PWA. `robots.txt`, `sitemap.xml` — SEO.
 - `media/` — 4 videos (3–9.2MB), team photos, workflow bg images, favicon. Hero video is hotlinked from imgur, not local.
 
+## Próximo tema: Plan de negocio (NO código)
+- El sitio quedó auditado, optimizado y en producción. El siguiente foco es de NEGOCIO, no de código: plan integral de marketing (IG orgánico + SEO/Google), generación de leads y prospección ("calidad sobre cantidad"), automatización, y un **pitch de llamada** para ofrecer servicios. Incluye "buscar geólogos y gente a quien llamar" (aclarar si es para contratar o para venderles).
+- **Cuestionario completo y punto de retome en `docs/business/plan-kickoff.md`.** Al retomar (sesión nueva): leer ese doc, pedirle a Neva las secciones 1, 2 y 4 primero, y con eso armar esqueleto + primer borrador del pitch. Entregables finales irán en `docs/business/`.
+
 ## Open Questions
 - Domain/deploy owned by user; deploy is `git push origin main` → Netlify. No staging environment noted.
 - Apps Script endpoint URL is hardcoded in `main.js` (public by nature of client-side form).
