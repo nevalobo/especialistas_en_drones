@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- Catálogo mostraba "especialistasendrones.com refused to connect" en producción: `X-Frame-Options: DENY` bloqueaba que el sitio embebiera su propio PDF en el iframe del visor. Cambiado a `SAMEORIGIN` (mantiene la protección anti-clickjacking pero permite embeds del mismo origen). No se veía en local porque `file://` no aplica los headers de Netlify.
+
 ### Added
 - `poster` (frame representativo, JPG) para el hero y los 3 videos de pilares, más `preload="none"` en los pilares para no descargarlos hasta que se necesiten. Posters en `media/video/posters/`.
 - Hero video hospedado localmente (`media/video/hero-drone-flight.mp4`), eliminando la dependencia del hotlink de imgur.
